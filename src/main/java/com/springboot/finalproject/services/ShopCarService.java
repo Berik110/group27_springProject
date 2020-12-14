@@ -1,6 +1,7 @@
 package com.springboot.finalproject.services;
 
 import com.springboot.finalproject.entities.Countries;
+import com.springboot.finalproject.entities.Pictures;
 import com.springboot.finalproject.entities.ShopCars;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface ShopCarService {
     Countries addCountry(Countries country);
 
     List<ShopCars> searchCars(String name, Double priceFrom, Double priceTo, Integer yearFrom, Integer yearTo);
+
+    List<Pictures> getAllPictures();
+    Pictures getPicture(Long id);
 }

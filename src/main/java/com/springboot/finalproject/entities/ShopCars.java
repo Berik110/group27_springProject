@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "t_cars")
@@ -38,4 +39,8 @@ public class ShopCars {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Countries country;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Pictures> pictures;
+
 }

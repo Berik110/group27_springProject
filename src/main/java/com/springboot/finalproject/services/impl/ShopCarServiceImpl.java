@@ -1,8 +1,10 @@
 package com.springboot.finalproject.services.impl;
 
 import com.springboot.finalproject.entities.Countries;
+import com.springboot.finalproject.entities.Pictures;
 import com.springboot.finalproject.entities.ShopCars;
 import com.springboot.finalproject.repositories.CountriesRepository;
+import com.springboot.finalproject.repositories.PicturesRepository;
 import com.springboot.finalproject.repositories.ShopCarRepository;
 import com.springboot.finalproject.services.ShopCarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ public class ShopCarServiceImpl implements ShopCarService {
 
     @Autowired
     private CountriesRepository countriesRepository;
+
+    @Autowired
+    private PicturesRepository picturesRepository;
+
+
 
     @Override
     public ShopCars addShopCar(ShopCars shopCar) {
@@ -98,5 +105,15 @@ public class ShopCarServiceImpl implements ShopCarService {
         }
 
         return shopCarRepository.findAll(specification);
+    }
+
+    @Override
+    public List<Pictures> getAllPictures() {
+        return picturesRepository.findAll();
+    }
+
+    @Override
+    public Pictures getPicture(Long id) {
+        return picturesRepository.getOne(id);
     }
 }

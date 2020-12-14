@@ -1,6 +1,7 @@
 package com.springboot.finalproject.controllers;
 
 import com.springboot.finalproject.entities.Countries;
+import com.springboot.finalproject.entities.Pictures;
 import com.springboot.finalproject.entities.ShopCars;
 import com.springboot.finalproject.entities.Users;
 import com.springboot.finalproject.services.ShopCarService;
@@ -61,6 +62,9 @@ public class ShopCarController {
 
     @Value("${avatar.defaultImg}")
     private String defaultImg;
+
+    //    Для details
+
 
 
 
@@ -156,10 +160,12 @@ public class ShopCarController {
     public String details(@PathVariable(name = "idshka") Long id, Model model){
 
         model.addAttribute("currentUser", getUser());
+        List<Pictures> pictures = shopCarService.getAllPictures();
 
         ShopCars shopCar = shopCarService.getShopCar(id);
         if (shopCar!=null){
             model.addAttribute("shopCar", shopCar);
+            model.addAttribute("pictures", pictures);
 
             return "details";
         }else{

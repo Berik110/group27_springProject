@@ -12,7 +12,15 @@
 <div class="container mb-5">
     <div class="row mt-5">
         <div class="col-sm-6 offset-3">
-
+<!--                <div class="form-group">-->
+<!--                    <table>-->
+<!--                        <tr>-->
+<!--                            <td th:each="pict: ${pictures}">-->
+<!--                                <img th:src="@{'/imgphoto/'+${pict.getName()}}">-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
                 <div class="form-group">
                     <label th:text="#{label.name}"></label>
                     <input type="text" class="form-control-plaintext" th:value="${shopCar!=null?shopCar.name:''}" readonly>
@@ -39,6 +47,25 @@
                 <div class="form-group">
                     <label th:text="#{label.price}"></label>
                     <input type="text" class="form-control-plaintext" th:value="${shopCar!=null?shopCar.price:''}" readonly>
+                </div>
+            <!--отображение картинок-->
+                <div class="form-group">
+                    <table>
+                        <tr th:each="car:${shopCar}">
+                            <td>
+                                <img th:src="@{'/imgphoto/'+${car.imgUrl}}" class="img-thumbnail">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            <!--добавление картинок-->
+                <div class="form-group" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
+                    <label th:text="#{label.addImg}"></label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="img">
+                        <label class="custom-file-label" for="customFile" th:text="#{label.chooseFile}"></label>
+                    </div>
                 </div>
                 <div class="form-group" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
                     <a th:href="@{'/editcar/'+${shopCar.id}}" class="btn btn-primary" th:text="#{label.editCar}"></a>
